@@ -1,7 +1,9 @@
-from django.urls import path, re_path
-from . import views
+from django.urls import path
+from django.contrib import admin
+from barberia_app.views import TurnoAPI
 
 urlpatterns = [
-    re_path(r'^turno$', views.TurnoList.as_view()),
-    re_path(r'^turno/(?P<pk>[0-9]+)$', views.TurnoDetail.as_view()),
+    path('admin/', admin.site.urls),
+    path('turno/', TurnoAPI.as_view()),
 ]
+

@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-o(n^a5^ewp!tz!a!m0(t9uy5hi!_a&=wt76!8=-z$vt7$lj+q-
 DEBUG = True
 
 ALLOWED_HOSTS = []
+CSRF_COOKIE_SECURE = False
 
 
 # Application definition
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -49,7 +51,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:4200',
+)
+
 
 ROOT_URLCONF = 'barberia.urls'
 
@@ -77,8 +87,12 @@ WSGI_APPLICATION = 'barberia.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'estetica',
+        'USER': 'user',
+        'PASSWORD': 'Octavio777',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
